@@ -16,7 +16,7 @@ A microservice that will perform actions on a Docker container based on cron sch
 Once `clepsydra` is up and running it watches Docker socket events for `create, start and destroy` events.
 If a container is found to have the label `cron.schedule` then it will be added to the crontab based on the schedule.
 
-Cron scheduling rules follow: (Expression Format)[https://godoc.org/github.com/robfig/cron#hdr-CRON_Expression_Format]
+Cron scheduling rules follow: [Expression Format](https://godoc.org/github.com/robfig/cron#hdr-CRON_Expression_Format)
 
 Other labels that can be applied:
 
@@ -27,7 +27,7 @@ seconds you would like. For instance for 20 seconds: `cron.restart_timeout=20`.
 
 
 ## License
-Copyright (c) 2014-2016 [Rancher Labs, Inc.](http://rancher.com)
+Copyright (c) 2014-2017 [Rancher Labs, Inc.](http://rancher.com)
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
