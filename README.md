@@ -18,13 +18,18 @@ If a container is found to have the label `cron.schedule` then it will be added 
 
 Cron scheduling rules follow: [Expression Format](https://godoc.org/github.com/robfig/cron#hdr-CRON_Expression_Format)
 
-Other labels that can be applied:
+## Override labels that can be applied
 
-To override the default start action on the container, set the label `cron.action` equal to stop or restart.
+To override the default start action on the container, set the label `cron.action` equal to ``stop` or `restart`.
 
 To override the default 10 second restart/stop timeout set the label `cron.restart_timeout` to the number of
 seconds you would like. For instance for 20 seconds: `cron.restart_timeout=20`.
 
+## Examples
+```
+# Restart every minute
+> docker run -d --label=cron.schedule="0 * * * * ?" ubuntu:16.04 date
+```
 
 ## License
 Copyright (c) 2014-2017 [Rancher Labs, Inc.](http://rancher.com)
