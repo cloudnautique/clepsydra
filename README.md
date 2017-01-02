@@ -1,16 +1,30 @@
 clepsydra
 ========
 
-A microservice that does micro things.
+A microservice that will perform actions on a Docker container based on cron schedule.
 
 ## Building
 
 `make`
 
-
 ## Running
 
 `./bin/clepsydra`
+
+## Usage
+
+Once `clepsydra` is up and running it watches Docker socket events for `create, start and destroy` events.
+If a container is found to have the label `cron.schedule` then it will be added to the crontab based on the schedule.
+
+Cron scheduling rules follow: (Expression Format)[https://godoc.org/github.com/robfig/cron#hdr-CRON_Expression_Format]
+
+Other labels that can be applied:
+
+To override the default start action on the container, set the label `cron.action` equal to stop or restart.
+
+To override the default 10 second restart/stop timeout set the label `cron.restart_timeout` to the number of
+seconds you would like. For instance for 20 seconds: `cron.restart_timeout=20`.
+
 
 ## License
 Copyright (c) 2014-2016 [Rancher Labs, Inc.](http://rancher.com)
