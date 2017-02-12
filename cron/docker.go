@@ -47,10 +47,12 @@ func (dj *DockerJob) Run() {
 	if dj.Err() != nil {
 		logrus.Error(dj.Err())
 	}
-
 }
 
 func (dj *DockerJob) resetErr() {
+	if dj.lastError != nil {
+		logrus.Debugf("Reseting error on %s", dj.ID)
+	}
 	dj.lastError = nil
 }
 

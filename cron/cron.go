@@ -39,6 +39,11 @@ func (ct *Crontab) AddJob(id string, labels map[string]string, jobType string) e
 	var schedule string
 	var job cron.Job
 
+	if ct.jobs[id] != nil {
+		logrus.Debugf("Job %s, already exists", id)
+		return nil
+	}
+
 	if sched, ok := labels["cron.schedule"]; ok {
 		schedule = sched
 	}
