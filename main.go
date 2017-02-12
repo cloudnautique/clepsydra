@@ -11,12 +11,25 @@ import (
 // VERSION of the application
 var VERSION = "v0.0.0-dev"
 
+func beforeApp(c *cli.Context) error {
+    if c.GlobalBool("debug") {
+        logrus.SetLevel(logrus.DebugLevel)
+    }
+    return nil
+}
+
 func main() {
 	app := cli.NewApp()
 	app.Name = "clepsydra"
 	app.Version = VERSION
-	app.Usage = "You need help!"
+	app.Usage = "clepsydra"
 	app.Action = start
+    app.Before = beforeApp
+    app.Flags = []cli.Flag{
+            cli.BoolFlag{
+                    Name: "debug,d",
+            },
+    }
 
 	app.Run(os.Args)
 }
