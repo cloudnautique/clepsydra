@@ -75,12 +75,12 @@ func (dh DockerHandler) Handle(msg Message) {
 	// With this service
 	if _, ok := msg.Actor.Attributes["cron.schedule"]; ok {
 		if msg.Action == "start" || msg.Action == "create" {
-			logrus.Debugf("Adding: %s to cron", msg.ID)
+			logrus.Debugf("Processing %s event for container: %s", msg.Action, msg.ID)
 			dh.crontab.AddJob(msg.ID, msg.Actor.Attributes, "docker")
 		}
 
 		if msg.Action == "destroy" {
-			logrus.Debugf("Removing: %s to cron", msg.ID)
+			logrus.Debugf("Processing destroy event for container: %s", msg.ID)
 			dh.crontab.RemoveJob(msg.ID)
 		}
 	}
